@@ -1,34 +1,66 @@
-import Link from "next/link";
+import Link from 'next/link'
+import { Navbar } from '@/components/ui/navbar/Navbar'
+import Image from 'next/image'
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material'
+import { inter, mont, mont_alter } from '@/config/fonts'
+import clsx from 'clsx'
+import { getTables } from '@/actions/table/get-tables'
 
-export default function Home() {
+export default async function Home() {
+  const res = await getTables()
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <Link
-          href={"/menu/foods"}
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Menu{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </Link>
-        <Link
-          href={"/admin"}
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Admin{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </Link>
-      </div>
-    </main>
-  );
+    <>
+      <Navbar />
+      <main className="flex flex-col min-h-screen">
+        <section className="flex flex-col justify-center items-center py-2">
+          <CardMedia
+            component="img"
+            image="/soup.svg"
+            alt="order-up logo"
+            className="size-10 md:size-12"
+          />
+          <h1
+            className={clsx(
+              'text-xl md:text-2xl font-bold',
+              mont_alter.className
+            )}
+          >
+            OrderUp
+          </h1>
+          <p className={clsx('text-sm md:text-lg font-medium', mont.className)}>
+            Selecciona tu mesa
+          </p>
+        </section>
+        <section className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-2 md:gap-4 py-5 md:p-10 justify-items-center">
+          {res &&
+            res.map((item) => (
+              <Link key={item.id} href={'/menu/foods'}>
+                <Card sx={{ minWidth: 150 }}>
+                  <CardActionArea className="flex flex-col items-center">
+                    <CardMedia
+                      component="img"
+                      height="50"
+                      image="/mesa.webp"
+                      alt="mesa img"
+                      className="size-20"
+                    />
+                    <CardContent>
+                      <Typography align="center" variant="h5" component="div">
+                        {item.name}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Link>
+            ))}
+        </section>
+      </main>
+    </>
+  )
 }
