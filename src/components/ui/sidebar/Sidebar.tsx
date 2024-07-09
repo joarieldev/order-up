@@ -24,7 +24,7 @@ export const Sidebar = () => {
                 alt="order-up logo"
                 className="size-6 sm:size-7"
               />
-              <h1 className={clsx('text-xl font-semibold', mont_alter.className)}>
+              <h1 className={clsx(' text-xl font-semibold', mont_alter.className)}>
                 OrderUp
               </h1>
             </Link>
@@ -35,8 +35,8 @@ export const Sidebar = () => {
                 <Button
                   fullWidth
                   className={clsx(
-                    'p-0 text-gray-800 rounded-lg hover:bg-gray-100 hover:text-black ',
-                    { 'bg-gray-100 text-black': item.path === pathName }
+                    'p-0 text-pink-950 rounded-lg hover:bg-pink-50',
+                    { 'bg-pink-50': item.path === pathName }
                   )}
                 >
                   <Link href={item.path} className='flex items-center w-full p-2'>

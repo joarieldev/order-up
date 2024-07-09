@@ -8,8 +8,8 @@ export const NavbarMobile = () => {
   const openSide = useSidebarStore((state) => state.openSidebar)
 
   return (
-    <nav className="sm:hidden m-2 bg-white rounded-lg shadow-sm">
-      <Button variant="text" className="m-1" onClick={openSide}>
+    <nav className="sticky top-2 sm:hidden m-2 bg-white rounded-lg shadow-sm">
+      <Button className="m-1" onClick={openSide}>
         <span className="sr-only">Open sidebar</span>
         <Image
           src="/menu-deep.svg"
