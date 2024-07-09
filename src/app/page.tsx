@@ -19,9 +19,10 @@ export default async function Home() {
       <Navbar />
       <main className="flex flex-col min-h-screen">
         <section className="flex flex-col justify-center items-center py-2">
-          <CardMedia
-            component="img"
-            image="/soup.svg"
+          <Image
+            src="/soup.svg"
+            height={100}
+            width={100}
             alt="order-up logo"
             className="size-10 md:size-12"
           />

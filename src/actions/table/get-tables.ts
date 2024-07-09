@@ -1,4 +1,4 @@
-import { table_data } from '@/mock/table'
+import { table_data } from '@/mock/order-up/table'
 
 export const getTables = async () => {
   try {
