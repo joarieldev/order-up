@@ -12,11 +12,11 @@ export default function MenuLayout({
       <NavbarMobile />
       <Sidebar />
       <SidebarMobile />
-      <div className="p-2 sm:ml-60">
-        <div className="p-4 border-2 border-gray-700 border-dashed rounded-lg">
+      <section className="p-2 sm:ml-60 min-h-[90vh] sm:min-h-screen flex items-center justify-center">
+        <div>
           {children}
         </div>
-      </div>
+      </section>
     </main>
   )
 }
