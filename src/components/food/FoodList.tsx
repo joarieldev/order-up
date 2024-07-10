@@ -1,8 +1,8 @@
-import { Food } from '@/interfaces/food.interface'
+import { IFood } from '@/interfaces/food.interface'
 import { FoodItem } from './FoodItem'
 
 interface Props {
-  foods: Food[]
+  foods: IFood[]
 }
 export const FoodList = ({ foods }: Props) => {
   return (
