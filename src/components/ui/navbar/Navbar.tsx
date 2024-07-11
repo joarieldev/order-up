@@ -5,7 +5,7 @@ export const Navbar = () => {
   return (
     <nav className="flex justify-end p-2">
       <Link href={'/admin'}>
-        <Button variant="contained" color="inherit">
+        <Button variant="outlined" color="inherit">
           Acceder
         </Button>
       </Link>

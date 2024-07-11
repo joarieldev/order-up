@@ -25,7 +25,7 @@ export const useFoodStore = create<State>()((set) => ({
     })),
   removeFood: (id: string, count: number) =>
     set((state) => ({
-      foods: state.foods.find((item) => item.food.id === id && item.count === 0)
+      foods: state.foods.find((item) => item.food.id === id && count !== 0)
         ? state.foods.map((item) => {
             if (item.food.id === id) {
               return {

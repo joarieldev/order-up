@@ -8,7 +8,7 @@ export const FoodList = ({ foods }: Props) => {
   return (
     <>
       {foods.length === 0 && (
-        <div className="w-full p-4 text-center bg-white/50 rounded-lg shadow-sm sm:p-8 ">
+        <div className="w-full p-4 text-center sm:p-8 ">
           <h5 className="mb-2 text-2xl font-bold text-gray-900 ">¡Oops!</h5>
           <p className="mb-5 text-base text-gray-600 sm:text-lg ">
             Los platos del menú no están disponibles en este momento.

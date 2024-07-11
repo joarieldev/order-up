@@ -19,7 +19,7 @@ export const SidebarMobile = () => {
       {isSide && (
         <div
           onClick={closeSide}
-          className="fixed sm:hidden top-0 left-0 w-screen h-screen z-10 bg-black opacity-30"
+          className="fixed sm:hidden top-0 left-0 w-screen h-screen z-20 bg-black opacity-30"
         />
       )}
       <aside

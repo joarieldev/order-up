@@ -1,4 +1,4 @@
-import { NavbarMobile } from '@/components/ui/navbar/NavbarMobile'
+import { OrderNavbar } from '@/components/order/OrderNavbar'
 import { Sidebar } from '@/components/ui/sidebar/Sidebar'
 import { SidebarMobile } from '@/components/ui/sidebar/SidebarMobile'
 
@@ -8,11 +8,11 @@ export default function MenuLayout({
   children: React.ReactNode
 }>) {
   return (
-    <main className="lg:bg-red-400">
-      <NavbarMobile />
+    <main>
       <Sidebar />
       <SidebarMobile />
-      <section className="p-2 sm:ml-60 min-h-[90vh] sm:min-h-screen flex items-center justify-center">
+      <OrderNavbar/>
+      <section className="py-2 max-sm:pl-2 pr-2 sm:ml-60 pt-14 min-h-screen flex flex-col items-center justify-center">
         <div>
           {children}
         </div>
