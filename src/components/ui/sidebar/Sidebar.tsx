@@ -13,7 +13,7 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="fixed top-0 left-0 z-20 w-60 h-screen transition-transform -translate-x-full sm:translate-x-0 p-2 bg-white">
+      <aside className="fixed top-0 left-0 w-60 h-screen transition-transform -translate-x-full sm:translate-x-0 p-2 bg-white">
         <div className="h-full px-3 py-4 overflow-y-auto rounded-lg shadow-md border border-gray-300">
           <div className="flex justify-center mb-5 py-1">
             <Link href={'/menu/foods'} className="inline-flex items-center gap-2">

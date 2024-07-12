@@ -2,8 +2,9 @@
 
 import { useFoodStore } from '@/store/food/food-store'
 import { useSidebarStore } from '@/store/ui/sidebar-store'
-import { Button, Typography } from '@mui/material'
+import { Button } from '@mui/material'
 import Image from 'next/image'
+import { OrdersButton } from './OrdersButton'
 
 export const OrderNavbar = () => {
   const openSide = useSidebarStore((state) => state.openSidebar)
@@ -27,9 +28,7 @@ export const OrderNavbar = () => {
         <p className="text-green-700 font-medium text-lg">
           ${foods.reduce((accumulator, item) => accumulator + item.food.price * item.count, 0)}
         </p>
-        <div>
-          {/* ordenes */}
-        </div>
+        <OrdersButton />
       </div>
     </nav>
   )
