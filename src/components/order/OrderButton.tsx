@@ -1,18 +1,16 @@
 'use client'
 
 import { useFoodStore } from '@/store/food/food-store'
-import { Backdrop, Badge, Box, CardMedia, Fab, Fade, Modal, Typography } from '@mui/material'
+import { Badge, CardMedia, Fab } from '@mui/material'
 import { useState } from 'react'
 import { OrderModal } from './OrderModal'
-
-
 
 export const OrderButton = () => {
   const foods = useFoodStore((state) => state.foods)
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   return (
     <>
@@ -32,11 +30,7 @@ export const OrderButton = () => {
           </Fab>
         </div>
       </div>
-      {
-        open && (
-          <OrderModal handleClose={handleClose} />
-        )
-      }
+      {open && <OrderModal handleClose={handleClose} />}
     </>
   )
 }
