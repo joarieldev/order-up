@@ -1,14 +1,17 @@
 'use client'
 
 import { mont_alter } from '@/config/fonts'
-import { menu_data } from '@/mock/order-up/menu'
+import { IMenu } from '@/interfaces/menu.interface'
 import { Button } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export const Sidebar = () => {
+interface Props {
+  menu: IMenu[]
+}
+export const Sidebar = ({ menu }:Props) => {
   const pathName = usePathname()
 
   return (
@@ -30,7 +33,7 @@ export const Sidebar = () => {
             </Link>
           </div>
           <ul className="space-y-2 font-medium">
-            {menu_data.map((item) => (
+            {menu.map((item) => (
               <li key={item.id}>
                 <Button
                   fullWidth

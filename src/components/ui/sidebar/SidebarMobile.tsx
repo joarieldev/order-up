@@ -1,7 +1,7 @@
 'use client'
 
 import { mont_alter } from '@/config/fonts'
-import { menu_data } from '@/mock/order-up/menu'
+import { IMenu } from '@/interfaces/menu.interface'
 import { useSidebarStore } from '@/store/ui/sidebar-store'
 import { Button } from '@mui/material'
 import clsx from 'clsx'
@@ -9,7 +9,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-export const SidebarMobile = () => {
+interface Props {
+  menu: IMenu[]
+}
+export const SidebarMobile = ({ menu }:Props) => {
   const pathName = usePathname()
   const isSide = useSidebarStore((state) => state.isSidebarOpen)
   const closeSide = useSidebarStore((state) => state.closeSidebar)
@@ -44,7 +47,7 @@ export const SidebarMobile = () => {
             </Link>
           </div>
           <ul className="space-y-2 font-medium">
-            {menu_data.map((item) => (
+            {menu.map((item) => (
               <li key={item.id}>
                 <Button
                   fullWidth
