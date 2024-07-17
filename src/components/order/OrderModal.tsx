@@ -1,6 +1,8 @@
 import { useFoodStore } from '@/store/food/food-store'
 import { Button, CardMedia } from '@mui/material'
 import { OrderItem } from './OrderItem'
+import { PopupModal } from '../ui/popup-modal/PopupModal'
+import { useState } from 'react'
 
 interface Props {
   handleClose: () => void
@@ -8,6 +10,14 @@ interface Props {
 
 export const OrderModal = ({ handleClose }: Props) => {
   const foods = useFoodStore((state) => state.foods)
+  const [open, setOpen] = useState(false)
+
+  const popupModal = (msg: boolean) => {
+    if (!msg) {
+      setOpen(false)
+      return
+    }
+  }
 
   return (
     <div className="fixed top-0 left-0 z-10 flex justify-center items-center w-screen h-screen">
@@ -15,7 +25,7 @@ export const OrderModal = ({ handleClose }: Props) => {
         onClick={handleClose}
         className="fixed top-0 left-0 w-screen h-screen bg-black opacity-30 overflow-hidden"
       />
-      <div className="relative bg-white rounded-lg shadow p-1 sm:p-2 max-sm:mx-6 sm:w-[576px] 2xl:w-[672px] border border-gray-300">
+      <div className="relative bg-white rounded-lg shadow p-1 sm:p-2 max-sm:mx-6 w-full sm:w-[576px] 2xl:w-[672px] border border-gray-300">
         <div className="flex items-center justify-between border-b border-gray-300 p-2">
           <h3 className="text-xl font-semibold text-gray-900">Orden</h3>
           <button
@@ -49,13 +59,23 @@ export const OrderModal = ({ handleClose }: Props) => {
         </div>
         <div className="flex items-center justify-between border-t border-gray-300 p-2">
           <p className="font-medium">
-            Total: ${foods.reduce((accumulator, item) => accumulator + item.food.price * item.count, 0)}
+            Total: $
+            {foods.reduce(
+              (accumulator, item) => accumulator + item.food.price * item.count,
+              0
+            )}
           </p>
-          <Button variant="outlined" color="inherit">
+          <Button
+            onClick={() => setOpen(true)}
+            variant="outlined"
+            color="inherit"
+            disabled={foods.length === 0}
+          >
             Ordenar
           </Button>
         </div>
       </div>
+      {open && <PopupModal popupModal={popupModal} />}
     </div>
   )
 }
