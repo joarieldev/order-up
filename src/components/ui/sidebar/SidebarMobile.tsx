@@ -1,9 +1,10 @@
 'use client'
 
+import { logout } from '@/actions/auth/logout'
 import { mont_alter } from '@/config/fonts'
 import { IMenu } from '@/interfaces/menu.interface'
 import { useSidebarStore } from '@/store/ui/sidebar-store'
-import { Button } from '@mui/material'
+import { Button, CardMedia } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,8 +12,9 @@ import { usePathname } from 'next/navigation'
 
 interface Props {
   menu: IMenu[]
+  session: any
 }
-export const SidebarMobile = ({ menu }:Props) => {
+export const SidebarMobile = ({ menu, session }: Props) => {
   const pathName = usePathname()
   const isSide = useSidebarStore((state) => state.isSidebarOpen)
   const closeSide = useSidebarStore((state) => state.closeSidebar)
@@ -28,12 +30,16 @@ export const SidebarMobile = ({ menu }:Props) => {
       <aside
         className={clsx(
           'fixed top-0 left-0 z-20 w-60 h-screen transition-transform -translate-x-full sm:hidden',
-          {'translate-x-0': isSide}
+          { 'translate-x-0': isSide }
         )}
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-white">
+        <div className="flex flex-col h-full px-3 py-4 overflow-y-auto bg-white">
           <div className="flex justify-center mb-5 py-1">
-            <Link onClick={closeSide} href={'/menu/foods'} className="inline-flex items-center gap-2">
+            <Link
+              onClick={closeSide}
+              href={'/menu/foods'}
+              className="inline-flex items-center gap-2"
+            >
               <Image
                 src="/soup.svg"
                 height={100}
@@ -41,28 +47,54 @@ export const SidebarMobile = ({ menu }:Props) => {
                 alt="order-up logo"
                 className="size-6"
               />
-              <h1 className={clsx('text-xl font-semibold', mont_alter.className)}>
+              <h1
+                className={clsx('text-xl font-semibold', mont_alter.className)}
+              >
                 OrderUp
               </h1>
             </Link>
           </div>
-          <ul className="space-y-2 font-medium">
-            {menu.map((item) => (
-              <li key={item.id}>
-                <Button
-                  fullWidth
-                  className={clsx(
-                    'p-0 text-pink-950 rounded-lg hover:bg-pink-50',
-                    { 'bg-pink-50': item.path === pathName }
-                  )}
-                >
-                  <Link onClick={closeSide} href={item.path} className='flex items-center w-full p-2'>
-                    <span>{item.food}</span>
-                  </Link>
-                </Button>
-              </li>
-            ))}
-          </ul>
+          <div className="flex grow justify-between flex-col space-y-1">
+            <ul className="space-y-2 font-medium">
+              {menu.map((item) => (
+                <li key={item.id}>
+                  <Button
+                    fullWidth
+                    className={clsx(
+                      'p-0 text-pink-950 rounded-lg hover:bg-pink-50',
+                      { 'bg-pink-50': item.path === pathName }
+                    )}
+                  >
+                    <Link
+                      onClick={closeSide}
+                      href={item.path}
+                      className="flex items-center w-full p-2"
+                    >
+                      <span>{item.food}</span>
+                    </Link>
+                  </Button>
+                </li>
+              ))}
+            </ul>
+            <div className="h-full w-full flex grow rounded-md" />
+            <Button
+              fullWidth
+              className="flex items-center justify-between text-pink-950 rounded-lg hover:bg-pink-50"
+              onClick={() => logout()}
+            >
+              <span className="text-base">{session.user.user}</span>
+              <span className="inline-flex gap-1 items-center">
+                Salir
+                <CardMedia
+                  component="img"
+                  height="50"
+                  image="/logout-2.svg"
+                  alt="dish img"
+                  className="size-5"
+                />
+              </span>
+            </Button>
+          </div>
         </div>
       </aside>
     </>
