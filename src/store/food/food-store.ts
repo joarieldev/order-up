@@ -5,6 +5,7 @@ interface State {
   foods: IFoodCount[]
   setFood: (data: IFoodCount) => void
   removeFood: (id: string, count: number) => void
+  removeAllFood: () => void
 }
 
 export const useFoodStore = create<State>()((set) => ({
@@ -37,4 +38,5 @@ export const useFoodStore = create<State>()((set) => ({
           })
         : state.foods.filter((item) => item.food.id !== id),
     })),
+  removeAllFood: () => set((state) => ({ foods: [] })),
 }))

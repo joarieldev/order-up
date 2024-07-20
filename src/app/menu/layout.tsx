@@ -24,11 +24,11 @@ export default async function MenuLayout({
     <main>
       <Sidebar menu={res} session={session} />
       <SidebarMobile menu={res} session={session} />
-      <OrderNavbar />
+      <OrderNavbar session={session}/>
       <section className="py-2 max-sm:pl-2 pr-2 sm:ml-60 pt-14 pb-16 min-h-screen flex flex-col items-center justify-center">
         <div>{children}</div>
       </section>
-      <OrderButton />
+      <OrderButton session={session} />
     </main>
   )
 }

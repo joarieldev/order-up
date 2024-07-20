@@ -6,7 +6,10 @@ import { Button } from '@mui/material'
 import Image from 'next/image'
 import { OrdersButton } from './OrdersButton'
 
-export const OrderNavbar = () => {
+interface Props {
+  session: any
+}
+export const OrderNavbar = ({ session }: Props) => {
   const openSide = useSidebarStore((state) => state.openSidebar)
   const foods = useFoodStore((state) => state.foods)
 
@@ -28,7 +31,7 @@ export const OrderNavbar = () => {
         <p className="text-green-700 font-medium text-lg">
           ${foods.reduce((accumulator, item) => accumulator + item.food.price * item.count, 0)}
         </p>
-        <OrdersButton />
+        <OrdersButton session={session}/>
       </div>
     </nav>
   )

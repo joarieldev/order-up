@@ -3,6 +3,8 @@
 import { logout } from '@/actions/auth/logout'
 import { mont_alter } from '@/config/fonts'
 import { IMenu } from '@/interfaces/menu.interface'
+import { useFoodStore } from '@/store/food/food-store'
+import { useOrderStore } from '@/store/order/order-store'
 import { Button, CardMedia } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -15,6 +17,8 @@ interface Props {
 }
 export const Sidebar = ({ menu, session }: Props) => {
   const pathName = usePathname()
+  const removeAllOrder = useOrderStore((state) => state.removeAllOrder)
+  const removeAllFood = useFoodStore((state) => state.removeAllFood)
 
   return (
     <>
@@ -64,7 +68,7 @@ export const Sidebar = ({ menu, session }: Props) => {
             <Button
               fullWidth
               className="flex items-center justify-between text-pink-950 rounded-lg hover:bg-pink-50"
-              onClick={() => logout()}
+              onClick={() => {removeAllOrder();removeAllFood();logout()}}
             >
               <span className="text-base">{session.user.user}</span>
               <span className="inline-flex gap-1 items-center">

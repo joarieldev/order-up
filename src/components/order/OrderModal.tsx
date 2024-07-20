@@ -1,22 +1,50 @@
 import { useFoodStore } from '@/store/food/food-store'
-import { Button, CardMedia } from '@mui/material'
+import {  Button, CardMedia } from '@mui/material'
 import { OrderItem } from './OrderItem'
 import { PopupModal } from '../ui/popup-modal/PopupModal'
 import { useState } from 'react'
+import { setOrder } from '@/actions/order/set-order'
+import { IOrder } from '@/interfaces/order.interface'
+import { BackdropOrder } from '../ui/backdrop/BackdropOrder'
+import { useOrderStore } from '@/store/order/order-store'
 
 interface Props {
   handleClose: () => void
+  session: any
 }
 
-export const OrderModal = ({ handleClose }: Props) => {
+export const OrderModal = ({ handleClose, session }: Props) => {
   const foods = useFoodStore((state) => state.foods)
-  const [open, setOpen] = useState(false)
+  const [openPopup, setOpenPopup] = useState(false)
+  const removeAllFood = useFoodStore((state) => state.removeAllFood)
+  const [backdrop, setBackdrop] = useState(false)
+  const setOrderStore = useOrderStore((state) => state.setOrder)
 
-  const popupModal = (msg: boolean) => {
+  const popupModal = async (msg: boolean) => {
     if (!msg) {
-      setOpen(false)
+      setOpenPopup(false)
       return
     }
+    const auxOrder: IOrder = {
+      foods: foods,
+      total: foods.reduce(
+        (accumulator, item) => accumulator + item.food.price * item.count,
+        0
+      ),
+      paid: false,
+    }
+    const res = await setOrder(session.user.user, auxOrder)
+    if (!res.ok) {
+      console.log('Error al crear la orden')
+    }
+    setOrderStore(auxOrder)
+    setBackdrop(true)
+    removeAllFood()
+    setOpenPopup(false)
+    setTimeout(() => {
+      setBackdrop(false)
+      handleClose()
+    },4000)
   }
 
   return (
@@ -66,7 +94,7 @@ export const OrderModal = ({ handleClose }: Props) => {
             )}
           </p>
           <Button
-            onClick={() => setOpen(true)}
+            onClick={() => setOpenPopup(true)}
             variant="outlined"
             color="inherit"
             disabled={foods.length === 0}
@@ -75,7 +103,8 @@ export const OrderModal = ({ handleClose }: Props) => {
           </Button>
         </div>
       </div>
-      {open && <PopupModal popupModal={popupModal} />}
+      {openPopup && <PopupModal popupModal={popupModal} />}
+      {backdrop && <BackdropOrder />}
     </div>
   )
 }

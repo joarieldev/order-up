@@ -5,7 +5,10 @@ import { Badge, CardMedia, Fab } from '@mui/material'
 import { useState } from 'react'
 import { OrderModal } from './OrderModal'
 
-export const OrderButton = () => {
+interface Props {
+  session: any
+}
+export const OrderButton = ({ session }: Props) => {
   const foods = useFoodStore((state) => state.foods)
 
   const [open, setOpen] = useState(false)
@@ -30,7 +33,7 @@ export const OrderButton = () => {
           </Fab>
         </div>
       </div>
-      {open && <OrderModal handleClose={handleClose} />}
+      {open && <OrderModal handleClose={handleClose} session={session} />}
     </>
   )
 }
