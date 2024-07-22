@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const Navbar = () => {
   return (
     <nav className="flex justify-end p-2">
-      <Link href={'/admin'}>
+      <Link href={'/admin/profits'}>
         <Button variant="outlined" color="inherit">
           Acceder
         </Button>

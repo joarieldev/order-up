@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (state === 'Success') {
-      window.location.replace('/admin')
+      window.location.replace('/admin/profits')
     }
   }, [state])
 

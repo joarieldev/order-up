@@ -16,7 +16,7 @@ export default async function MenuLayout({
   const session = await auth()
 
   if ((session?.user as IUser)?.role !== 'client') {
-    if ((session?.user as IUser)?.role === 'admin') redirect('/admin')
+    if ((session?.user as IUser)?.role === 'admin') redirect('/admin/profits')
     redirect('/')
   }
 
