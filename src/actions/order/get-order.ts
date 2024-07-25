@@ -22,7 +22,7 @@ export const getOrder = async (table: string) => {
     console.log(error)
     return {
       ok: false,
-      message: 'No se pudo enviar la orden',
+      message: 'No se pudo solicitar la orden',
     }
   }
 }

@@ -1,4 +1,4 @@
-import { IOrder, IOrders } from '@/interfaces/order.interface'
+import { IOrder } from '@/interfaces/order.interface'
 import { create } from 'zustand'
 
 interface State {

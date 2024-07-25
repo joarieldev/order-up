@@ -1,5 +1,10 @@
-export default function CollectPage() {
+import { getTables } from "@/actions/table/get-tables"
+import { CollectList } from "@/components/collect/CollectList"
+
+export default async function CollectPage() {
+  const res = await getTables()
+  
   return (
-    <div className="bg-gray-700/70 h-[900px]">CollectPage</div>
+    <CollectList res={res}/>
   )
 }
