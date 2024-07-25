@@ -17,7 +17,6 @@ export const CollectOrder = ({ table }: Props) => {
   const [order, setOrder] = useState<IOrder[]>([])
   const [openPopup, setOpenPopup] = useState(false)
   const router = useRouter()
-  const isPaid = useIsPaidStore((state) => state.isPaid)
   const noPaid = useIsPaidStore((state) => state.noPaid)
   const yesPaid = useIsPaidStore((state) => state.yesPaid)
 

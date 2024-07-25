@@ -9,8 +9,12 @@ import { useFormState } from 'react-dom'
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [state, dispatch] = useFormState(authenticate, undefined)
+  const [data, setData] = useState({ user: 'Admin', password: 'admin123'})
 
   const handleClickShowPassword = () => setShowPassword((show) => !show)
+  const handleChange = (event: { target: { name: string; value: string; }; }) => {
+    setData({ ...data, [event.target.name]: event.target.value })
+  }
 
   useEffect(() => {
     if (state === 'Success') {
@@ -41,6 +45,8 @@ export default function LoginPage() {
                 type="text"
                 placeholder="Juan, William"
                 className="w-full"
+                value={data.user}
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -56,6 +62,8 @@ export default function LoginPage() {
                 type={showPassword ? 'text' : 'password'}
                 placeholder="••••••••"
                 className="w-full"
+                value={data.password}
+                onChange={handleChange}
               />
             </div>
             <div className="flex items-center">
@@ -84,7 +92,7 @@ export default function LoginPage() {
       {state === 'CredentialsSignin' && (
         <div className="absolute bottom-0">
           <Alert severity="error">
-            This Alert displays the default close icon.
+            Credenciales incorrectas.
           </Alert>
         </div>
       )}
