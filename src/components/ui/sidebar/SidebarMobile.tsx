@@ -72,9 +72,16 @@ export const SidebarMobile = ({ menu, session }: Props) => {
                     <Link
                       onClick={closeSide}
                       href={item.path}
-                      className="flex items-center w-full p-2"
-                    >
-                      <span>{item.food}</span>
+                      className="inline-flex items-center justify-between w-full p-2"
+                      >
+                        <span>{item.food}</span>
+                        <CardMedia
+                          component="img"
+                          height="50"
+                          image={`/${item.icon}`}
+                          alt={item.food}
+                          className="size-5"
+                        />
                     </Link>
                   </Button>
                 </li>

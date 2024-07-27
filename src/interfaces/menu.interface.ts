@@ -3,4 +3,5 @@ export interface IMenu {
   food: string
   icon: string
   path: string
+  color: string
 }

@@ -15,16 +15,16 @@ export default async function Home() {
   }
 
   return (
-    <>
+    <main className="flex flex-col items-center min-h-screen">
       <Navbar />
-      <main className="flex flex-col min-h-screen">
-        <section className="flex flex-col justify-center items-center py-2">
-          <Title />
-        </section>
-        <section className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-2 md:gap-4 py-5 md:p-10 justify-items-center">
+      <section className="flex flex-col justify-center items-center py-2 w-full max-w-screen-lg">
+        <Title />
+      </section>
+      <section className="py-2 w-full max-w-screen-lg">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-2 md:gap-4 py-5 md:p-10 justify-items-center">
           <TableList res={res} />
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </main>
   )
 }

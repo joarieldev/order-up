@@ -22,7 +22,7 @@ export const MenuItem = ({ foodCategory }: Props) => {
         {foods.map((item) => (
           <li key={item.id} className="flex items-center justify-center gap-2 py-1 ">
             <p className="w-44 sm:w-96 truncate">{item.name}</p>
-            <p className="font-medium">${item.price}</p>
+            <p className="w-28 truncate font-medium text-right">${item.price}</p>
           </li>
         ))}
       </ul>

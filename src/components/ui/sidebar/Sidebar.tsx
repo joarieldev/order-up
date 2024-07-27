@@ -56,9 +56,16 @@ export const Sidebar = ({ menu, session }: Props) => {
                   >
                     <Link
                       href={item.path}
-                      className="flex items-center w-full p-2"
+                      className="inline-flex items-center justify-between w-full p-2"
                     >
                       <span>{item.food}</span>
+                      <CardMedia
+                        component="img"
+                        height="50"
+                        image={`/${item.icon}`}
+                        alt={item.food}
+                        className="size-5"
+                      />
                     </Link>
                   </Button>
                 </li>
