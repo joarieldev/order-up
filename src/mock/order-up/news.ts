@@ -1,7 +1,7 @@
 export const news_data = [
   {
     id: '13',
-    title: '¡Disfrutá 1 docena de empanadas a 15%',
+    title: '¡Disfrutá 1 docena de empanadas a 15% de descuento!',
     image: 'emp_pollo.webp',
     type: 'promociones',
   },

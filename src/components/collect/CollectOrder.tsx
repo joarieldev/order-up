@@ -82,13 +82,18 @@ export const CollectOrder = ({ table }: Props) => {
                 <li className="font-medium">Orden {index + 1}</li>
                 {item.foods.map((item, index) => (
                   <li key={index} className="pl-2 text-base font-light">
-                    <div className="flex flex-col sm:flex-row">
+                    <div className="flex flex-col sm:flex-row gap-x-2">
                       <p className="w-80 max-sm:w-60 truncate">
                         {item.food.name}
                       </p>
-                      <p className="w-full text-right">
-                        x{item.count} ${item.food.price * item.count}
-                      </p>
+                      <div className="w-full flex flex-row justify-between">
+                        <p className="w-48 max-sm:w-40 truncat text-left sm:text-center font-normal">
+                          {item.food.category}
+                        </p>
+                        <p className="w-auto text-right">
+                          x{item.count} ${item.food.price * item.count}
+                        </p>
+                      </div>
                     </div>
                   </li>
                 ))}
