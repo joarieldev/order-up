@@ -34,13 +34,12 @@ export const TableList = ({ res }: Props) => {
             sx={{ minWidth: 150 }}
             onClick={() => handleSignIn(item)}
           >
-            <CardActionArea className="flex flex-col items-center">
+            <CardActionArea sx={{ display: "grid", placeItems: "center"}}>
               <CardMedia
                 component="img"
-                height="50"
                 image="/mesa.webp"
                 alt="mesa img"
-                className="size-20"
+                sx={{ height: "50px", width: "50px" }}
               />
               <CardContent>
                 <Typography align="center" variant="h5" component="div">
